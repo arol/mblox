@@ -2,9 +2,9 @@ require "spec_helper"
 
 describe "phone number" do
   it "should be 10 digits" do
-    expect { Mblox::Sms.new("2"*9, the_message) }.to raise_error(Mblox::SmsError, "Phone number must be ten digits")
+    expect { Mblox::Sms.new("2"*9, the_message) }.to raise_error(Mblox::SmsError, "Phone number must be ten or eleven digits")
     expect { Mblox::Sms.new("2"*10, the_message) }.to_not raise_error
-    expect { Mblox::Sms.new("2"*11, the_message) }.to raise_error(Mblox::SmsError, "Phone number must be ten digits")
+    expect { Mblox::Sms.new("2"*11, the_message) }.to_not raise_error
   end
 
   it "should not start with 0 or 1" do
@@ -12,11 +12,10 @@ describe "phone number" do
     expect { Mblox::Sms.new("0"+"2"*9, the_message) }.to raise_error(Mblox::SmsError, "Phone number cannot begin with 0 or 1")
   end
 
-  it "should be safe from changing" do
+  it "should not change on send" do
     number = TEST_NUMBER.to_s
     mblox = Mblox::Sms.new(number,the_message)
-    number[1..3] = ''
-    expect(mblox.phone).to eq("1#{TEST_NUMBER}")
+    expect(mblox.phone).to eq("#{TEST_NUMBER}")
   end
 end
 

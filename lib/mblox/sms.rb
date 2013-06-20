@@ -8,7 +8,7 @@ module Mblox
     attr_reader :phone, :message
     def initialize(phone,message)
       phone = phone.to_s
-      raise SmsError, "Phone number must be ten digits" unless /\A[0-9]{10,11}\z/.match(phone)
+      raise SmsError, "Phone number must be ten or eleven digits" unless /\A[0-9]{10,11}\z/.match(phone)
       raise SmsError, "Phone number cannot begin with 0 or 1" if ['0','1'].include?(phone[0].to_s)
       raise SmsError, "Message cannot be blank" if message.empty?
       if message.size > 160
