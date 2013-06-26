@@ -62,6 +62,6 @@ describe "SMS messages" do
   end
 
   it "should fail when sent to a landline" do
-    expect(Mblox::Sms.new("6176354500",the_message).send).to eq(result_unroutable)
+    expect(Mblox::Sms.new("34932661431",the_message).send).to eq(result_unroutable)
   end
 end
