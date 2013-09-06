@@ -56,7 +56,7 @@ private
           nl.Notification(:SequenceNumber => "1", :MessageType => "SMS") do |n|
     	      n.Message(@message)
     	      n.Profile(Mblox.config.profile_id)
-    	      n.SenderID(Mblox.config.sender_id, :Type => 'Shortcode')
+    	      n.SenderID(Mblox.config.sender_id, :Type => 'Alpha')
     	      n.Tariff(Mblox.config.tariff)
     	      n.Subscriber do |s|
     		      s.SubscriberNumber(@phone)
