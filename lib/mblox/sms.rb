@@ -22,7 +22,7 @@ module Mblox
     def send
       commit build
     end
-    
+
 private
     def commit(request_body)
     	Mblox.log "Sending SMS to Mblox:\n#{request_body}"
@@ -46,7 +46,7 @@ private
 
     def build
     	builder = Builder::XmlMarkup.new
-    	builder.instruct!(:xml, :encoding => "ISO-8859-1")
+    	builder.instruct!(:xml, :encoding => "UTF-8")
     	builder.NotificationRequest(:Version => "3.5") do |nr|
     	  nr.NotificationHeader do |nh|
     	    nh.PartnerName(Mblox.config.partner_name)
@@ -66,6 +66,6 @@ private
         end
        end
      end
-     
+
   end
 end
